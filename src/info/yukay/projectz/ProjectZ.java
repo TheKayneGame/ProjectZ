@@ -25,8 +25,8 @@ public class ProjectZ extends Applet implements ActionListener
     boolean updatePlayer;
     boolean ticking = true;
     
-    private BufferedImage image; 
-    Image SpaceShip;
+    private BufferedImage SpaceShip; 
+    Image SpaceShip1;
     Timer timer;
     Image Buffer;
     Graphics gBuff;
@@ -39,7 +39,7 @@ public class ProjectZ extends Applet implements ActionListener
         this.setSize(600, 500);
         this.setFocusable(true);
         
-        SpaceShip = getImage(getCodeBase(), "SpaceShip.png");
+        SpaceShip1 = getImage(getCodeBase(), "SpaceShip.png");
        
     	
         timer = new Timer(10, this);
@@ -51,7 +51,7 @@ public class ProjectZ extends Applet implements ActionListener
     	
     	try
     	{
-    		image = ImageIO.read(new File("SpaceShip.png"));
+    		SpaceShip = ImageIO.read(new File("SpaceShip.png"));
     	} catch (IOException ex) { } 
     }
     
@@ -67,7 +67,7 @@ public class ProjectZ extends Applet implements ActionListener
     	super.paint(g);
     	dim = getSize();
     	gBuff.clearRect(0, 0, dim.width, dim.height);
-    	g.drawImage(image, Player.getX(), Player.getY(), this);
+    	g.drawImage(SpaceShip, Player.getX(), Player.getY(), this);
     	
     }
 
