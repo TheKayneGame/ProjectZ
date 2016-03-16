@@ -11,15 +11,18 @@ public class Player
 	
 	public static int getY()
 	{
+		
 		return y;
 	}
 	
 	public static void setX(int i)
 	{
-		x = i; 
+		x = i;
+		System.out.println("X:"+i);
 	}
 	public static void setY(int i)
 	{
-		y = i; 
+		y = i;
+		System.out.println("Y:"+i);
 	}
 }

@@ -16,14 +16,29 @@ public class InputKeyEvents extends KeyAdapter
 			case KeyEvent.VK_RIGHT:
 					Player.setX(Player.getX() + 2);
 				break;
-			case KeyEvent.VK_A: 
+			
+			case KeyEvent.VK_A:
+			case KeyEvent.VK_LEFT:
+				
+				if (Player.getX() >= 11)
+				{
 					Player.setX(Player.getX() - 2);
+				}
 				break;
+			
 			case KeyEvent.VK_W:
+				if (Player.getY() >= 11)
+				{
 					Player.setY(Player.getY() - 2);
+				}
 				break;
+			
 			case KeyEvent.VK_S:
-					Player.setY(Player.getY() + 2);
+				if (Player.getY() <= 443)
+				{
+				Player.setY(Player.getY() + 2);					
+				}
+
 				break;
 			default:
 				break;
