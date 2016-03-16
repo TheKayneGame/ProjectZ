@@ -22,8 +22,7 @@ public class ProjectZ extends Applet implements ActionListener
     int FieldWidth = 31;
     int FieldHeight = 40;
     int ticks = 0;
-    boolean updatePlayer;
-    boolean ticking = true;
+    int BulletCount = 2;
     
     private BufferedImage SpaceShip; 
     //Image SpaceShip1;
@@ -49,6 +48,7 @@ public class ProjectZ extends Applet implements ActionListener
     	Buffer = createImage(dim.width, dim.height);
     	gBuff = Buffer.getGraphics();
     	
+    	//Load Textures
     	try
     	{
     		SpaceShip = ImageIO.read(new File("SpaceShip.png"));
@@ -69,12 +69,12 @@ public class ProjectZ extends Applet implements ActionListener
     	gBuff.clearRect(0, 0, dim.width, dim.height);
     	gBuff.drawImage(SpaceShip, Player.getX(), Player.getY(), this); 
     	gBuff.drawRect(10, 10, 400, 450 );
+    	gBuff.fillOval(50, 50, 20, 20);
     	g.drawImage(Buffer,0,0,this);
     }
-
+    
     public void update(Graphics g)
     {
     	paint(g);
     }
-	
 }

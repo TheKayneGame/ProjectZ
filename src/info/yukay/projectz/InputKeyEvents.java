@@ -8,17 +8,18 @@ public class InputKeyEvents extends KeyAdapter
 	public void keyPressed(KeyEvent e)
 	{
 		int keys = e.getKeyCode();
-		System.out.println(keys); //log key id
+		System.out.print("Key: "+keys); //Logs key ID
 		
 		switch(keys)
 		{
 			case KeyEvent.VK_D:
-			case KeyEvent.VK_RIGHT:
+				if (Player.getX() <= 394)
+				{
 					Player.setX(Player.getX() + 2);
+				}
 				break;
 			
 			case KeyEvent.VK_A:
-			case KeyEvent.VK_LEFT:
 				
 				if (Player.getX() >= 11)
 				{
@@ -36,15 +37,10 @@ public class InputKeyEvents extends KeyAdapter
 			case KeyEvent.VK_S:
 				if (Player.getY() <= 443)
 				{
-				Player.setY(Player.getY() + 2);					
+					Player.setY(Player.getY() + 2);					
 				}
 
 				break;
-			default:
-				break;
-		}
-		
-		
+		}	
 	}
-
 }
