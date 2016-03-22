@@ -38,6 +38,7 @@ public class ProjectZ extends Applet implements ActionListener
         this.setSize(600, 500);
         this.setFocusable(true);
         
+        
         //SpaceShip1 = getImage(getCodeBase(), "SpaceShip.png");
        
     	
