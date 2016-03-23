@@ -5,10 +5,13 @@ import java.awt.event.KeyEvent;
 
 public class InputKeyEvents extends KeyAdapter
 {
+	
+	private static int keys;
+	
 	public void keyPressed(KeyEvent e)
 	{
-		int keys = e.getKeyCode();
-		System.out.print("Key: "+keys); //Logs key ID
+		keys = e.getKeyCode();
+		//System.out.print("Key: "+keys); //Logs key ID
 		
 		switch(keys)
 		{
@@ -42,5 +45,9 @@ public class InputKeyEvents extends KeyAdapter
 
 				break;
 		}	
+	}
+	
+	public static int getKey() {
+		return keys;
 	}
 }

@@ -37,6 +37,8 @@ public class ProjectZ extends Applet implements ActionListener
         addKeyListener(new InputKeyEvents());
         this.setSize(600, 500);
         this.setFocusable(true);
+        Thread Thread = new Thread (Threaddrun);
+		Thread.start();
         
         
         //SpaceShip1 = getImage(getCodeBase(), "SpaceShip.png");

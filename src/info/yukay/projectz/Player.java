@@ -17,12 +17,14 @@ public class Player
 	public static void setX(int i)
 	{
 		x = i;
+		System.out.print("Key: "+InputKeyEvents.getKey());
 		System.out.print("; X: "+x);
 		System.out.println("; Y: "+y);
 	}
 	public static void setY(int i)
 	{
 		y = i;
+		System.out.print("Key: "+InputKeyEvents.getKey());
 		System.out.print("; X: "+x);
 		System.out.println("; Y: "+y);
 	}
