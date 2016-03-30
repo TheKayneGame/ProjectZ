@@ -6,29 +6,27 @@ import java.awt.event.KeyEvent;
 public class InputKeyEvents extends KeyAdapter
 {
 	
-	Thread ThreadA;
+	Thread KeyThread;
 	static double posX;
-	static int TrSpeed1 = 10;
+	static int KeyThreadSpeed = 5;
 	private static int keys;
 	
 	public static void init() 
 	{
-		Thread ThreadA = new Thread (Threadrun);
-		ThreadA.start();
+		Thread KeyThread = new Thread (Threadrun);
+		KeyThread.start();
 		System.out.println("KeyEvents INIT");
 	}
 	
-	public void KeyReleased(KeyEvent e)
+	public void keyReleased(KeyEvent e)
 	{
-		while(keys != 0)
-		{
-			keys = 0;
-		}
+		//keys = e.getKeyCode();
+		keys = 0;
 	}
 	
 	public void keyPressed(KeyEvent e)
 	{
-		keys = e.getKeyCode();
+		keys = e.getKeyCode();  
 	}
 	
 
@@ -43,7 +41,7 @@ public class InputKeyEvents extends KeyAdapter
 				case KeyEvent.VK_D:
 					if (Player.getX() <= 394)
 					{
-						Player.setX(Player.getX() + 2);
+						Player.setX(Player.getX() + 1);
 					}
 					break;
 				
@@ -51,33 +49,31 @@ public class InputKeyEvents extends KeyAdapter
 					
 					if (Player.getX() >= 11)
 					{
-						Player.setX(Player.getX() - 2);
+						Player.setX(Player.getX() - 1);
 					}
 					break;
 				
 				case KeyEvent.VK_W:
 					if (Player.getY() >= 11)
 					{
-						Player.setY(Player.getY() - 2);
+						Player.setY(Player.getY() - 1);
 					}
 					break;
 				
 				case KeyEvent.VK_S:
 					if (Player.getY() <= 443)
 					{
-						Player.setY(Player.getY() + 2);					
+						Player.setY(Player.getY() + 1);					
 					}
 					break;
 				default:
-					System.out.println("Unknown result");
+					//System.out.println("Unknown result");
 					break;
-			}
-			
-				
+			}	
 			
 			try 
 			{
-			Thread.sleep(TrSpeed1);	
+			Thread.sleep(KeyThreadSpeed);
 			}
 			catch (InterruptedException ex){}
 			}
