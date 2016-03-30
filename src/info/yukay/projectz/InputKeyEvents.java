@@ -11,7 +11,7 @@ public class InputKeyEvents extends KeyAdapter
 	public void keyPressed(KeyEvent e)
 	{
 		keys = e.getKeyCode();
-		//System.out.print("Key: "+keys); //Logs key ID
+		//System.out.print(keys);
 		
 		switch(keys)
 		{
