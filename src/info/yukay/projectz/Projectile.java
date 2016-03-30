@@ -1,6 +1,5 @@
 package info.yukay.projectz;
 
-import java.awt.MouseInfo;
 import java.awt.event.KeyEvent;
 
 public class Projectile{

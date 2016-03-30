@@ -4,6 +4,9 @@ public class Player
 {
 	private static int x = 200, y = 420;
 	
+	public void init(){
+		System.out.println("Player INIT");
+	}
 	public static int getX()
 	{
 		return x;

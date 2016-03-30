@@ -34,10 +34,11 @@ public class ProjectZ extends Applet implements ActionListener
     
     public void init()
     {
-    	System.out.println("ProjectZ init");
+    	System.out.println("ProjectZ INIT");
         addKeyListener(new InputKeyEvents());
         setFocusable(true);
         Projectile.init();
+        InputKeyEvents.init();
         setSize(600, 500);
         
         
