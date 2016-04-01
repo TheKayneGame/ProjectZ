@@ -18,7 +18,8 @@ import javax.swing.Timer;
 @SuppressWarnings("serial")
 public class ProjectZ extends Applet implements ActionListener
 {
-    int Field[][];
+    static boolean Debug;
+	int Field[][];
     int FieldWidth = 31;
     int FieldHeight = 40;
     int ticks = 0;
@@ -74,12 +75,23 @@ public class ProjectZ extends Applet implements ActionListener
     	gBuff.clearRect(0, 0, dim.width, dim.height);
     	gBuff.drawImage(SpaceShip, Player.getX(), Player.getY(), this); 
     	gBuff.drawRect(10, 10, 400, 450 );
-    	gBuff.fillOval(50, 50, 20, 20);
+    	gBuff.fillOval(Projectile.posX, Projectile.posY, Projectile.ProjSize, Projectile.ProjSize);
+    	
     	g.drawImage(Buffer,0,0,this);
     }
     
     public void update(Graphics g)
     {
     	paint(g);
+    }
+    
+    public static void DebugSwitch(boolean i)
+    {
+    	Debug = i;
+    }
+    
+    public static boolean DebugModeOn()
+    {
+    	return Debug;
     }
 }

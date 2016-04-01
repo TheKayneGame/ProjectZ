@@ -5,11 +5,14 @@ import java.awt.event.KeyEvent;
 
 public class InputKeyEvents extends KeyAdapter
 {
-	
 	Thread KeyThread;
+	int key3;
 	static double posX;
 	static int KeyThreadSpeed = 5;
-	private static int keys;
+	static int key;
+	static boolean Debug;
+	
+	 
 	
 	public static void init() 
 	{
@@ -18,74 +21,147 @@ public class InputKeyEvents extends KeyAdapter
 		System.out.println("KeyEvents INIT");
 	}
 	
-	public void keyReleased(KeyEvent e)
-	{
-		//keys = e.getKeyCode();
-		keys = 0;
-	}
-	
 	public void keyPressed(KeyEvent e)
 	{
-		keys = e.getKeyCode();  
+		switch(e.getKeyCode())
+		{
+		case KeyEvent.VK_W: 
+		case KeyEvent.VK_A:  
+		case KeyEvent.VK_S: 
+		case KeyEvent.VK_D:
+			key = e.getKeyCode();
+			break;
+		
+		case KeyEvent.VK_Q:
+			if (ProjectZ.DebugModeOn() == true)
+			{
+				ProjectZ.DebugSwitch(false);
+			} 
+			else if (ProjectZ.DebugModeOn() == false)
+			{
+				ProjectZ.DebugSwitch(true);
+			}
+			System.out.println("DebugMode: " + ProjectZ.DebugModeOn());
+			break;
+			
+		case KeyEvent.VK_E:
+			Projectile.RandomProjectileLoc = true;
+			break;
+		}
 	}
 	
-
+	public void keyReleased(KeyEvent e)
+	{
+		switch(e.getKeyCode())
+		{
+		case KeyEvent.VK_W: 
+		case KeyEvent.VK_A:  
+		case KeyEvent.VK_S: 
+		case KeyEvent.VK_D:
+			break;
+		}
+	}
 	static Runnable Threadrun = new Runnable()
 	{
-	public void run() 
-	{
-		while (true) 
+		
+		public void run() 
 		{
-			switch(keys)
+			System.out.println("Thread Runned");
+			while (true) 
 			{
-				case KeyEvent.VK_D:
-					if (Player.getX() <= 394)
-					{
-						Player.setX(Player.getX() + 1);
-					}
-					break;
 				
-				case KeyEvent.VK_A:
-					
-					if (Player.getX() >= 11)
-					{
-						Player.setX(Player.getX() - 1);
-					}
-					break;
-				
+				switch(key)
+				{
 				case KeyEvent.VK_W:
-					if (Player.getY() >= 11)
-					{
-						Player.setY(Player.getY() - 1);
-					}
+					Player.move(1, 1);
 					break;
-				
+					
 				case KeyEvent.VK_S:
-					if (Player.getY() <= 443)
-					{
-						Player.setY(Player.getY() + 1);					
-					}
+					Player.move(1, 2);					
 					break;
-				default:
-					//System.out.println("Unknown result");
+					
+				case KeyEvent.VK_A:
+					Player.move(1, 3);
 					break;
-			}	
-			
-			try 
-			{
-			Thread.sleep(KeyThreadSpeed);
-			}
-			catch (InterruptedException ex){}
+					
+				case KeyEvent.VK_D:
+					Player.move(1, 4);
+					break;
+				}	
+
+				try 
+				{
+					Thread.sleep(KeyThreadSpeed);
+				}
+				catch (InterruptedException ex){}
 			}
 		}
 	};
 	
 	public static int getKey() 
 	{
-		return keys;
+		return key;
 	}
 	
 }
+
+
+
+//	static Runnable Threadrun = new Runnable()
+//	{
+//		public void run() 
+//		{
+//			System.out.println("Thread Runned");
+//			while (true) 
+//			{
+//				
+//				switch(keys)
+//				{
+//				case KeyEvent.VK_D:
+//					if (Player.getX() <= 394)
+//					{
+//						Player.setX(Player.getX() + 1);
+//					}
+//					break;
+//
+//				case KeyEvent.VK_A:
+//
+//					if (Player.getX() >= 11)
+//					{
+//						Player.setX(Player.getX() - 1);
+//					}
+//					break;
+//
+//				case KeyEvent.VK_W:
+//					if (Player.getY() >= 11)
+//					{
+//						Player.setY(Player.getY() - 1);
+//					}
+//					break;
+//
+//				case KeyEvent.VK_S:
+//					if (Player.getY() <= 443)
+//					{
+//						Player.setY(Player.getY() + 1);					
+//					}
+//					break;
+//				}	
+//
+//				try 
+//				{
+//					Thread.sleep(KeyThreadSpeed);
+//				}
+//				catch (InterruptedException ex){}
+//			}
+//		}
+//	};
+//	
+//	public static int getKey() 
+//	{
+//		return keys;
+//	}
+//	
+//}
 /*private static int keys;
 	
 	public void keyPressed(KeyEvent e)
