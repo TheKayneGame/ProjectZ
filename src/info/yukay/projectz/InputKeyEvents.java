@@ -12,8 +12,6 @@ public class InputKeyEvents extends KeyAdapter
 	static int key;
 	static boolean Debug;
 	
-	 
-	
 	public static void init() 
 	{
 		Thread KeyThread = new Thread (Threadrun);

@@ -25,7 +25,9 @@ public class ProjectZ extends Applet implements ActionListener
     int ticks = 0;
     int BulletCount = 2;
     
-    private BufferedImage SpaceShip; 
+    private BufferedImage SpaceShip;
+    private BufferedImage Bullet;
+ 
     //Image SpaceShip1;
     Timer timer;
     Image Buffer;
@@ -42,8 +44,9 @@ public class ProjectZ extends Applet implements ActionListener
         setSize(600, 500);
         
         //Initializes Supplementary Classes
-        Projectile.init();
+        //Projectile.init();
         InputKeyEvents.init();
+        Projectile.init();
        
     	//Starts Timer For 
         timer = new Timer(10, this);
@@ -58,6 +61,7 @@ public class ProjectZ extends Applet implements ActionListener
     	try
     	{
     		SpaceShip = ImageIO.read(new File("SpaceShip.png"));
+    		Bullet = ImageIO.read(new File("Bullet.png"));
     	} catch (IOException ex) { } 
     }
     
@@ -74,8 +78,9 @@ public class ProjectZ extends Applet implements ActionListener
     	dim = getSize();
     	gBuff.clearRect(0, 0, dim.width, dim.height);
     	gBuff.drawImage(SpaceShip, Player.getX(), Player.getY(), this); 
+    	gBuff.drawImage(Bullet, Projectile.posX, Projectile.posY, this);
     	gBuff.drawRect(10, 10, 400, 450 );
-    	gBuff.fillOval(Projectile.posX, Projectile.posY, Projectile.ProjSize, Projectile.ProjSize);
+    	
     	
     	g.drawImage(Buffer,0,0,this);
     }

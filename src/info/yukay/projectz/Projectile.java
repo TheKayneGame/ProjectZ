@@ -1,76 +1,37 @@
 package info.yukay.projectz;
 
-public class Projectile {
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-	Thread ThreadA;
-	static int ProjSize = 20;
-	static boolean RandomProjectileLoc;
-	static int calcPosX;
-	static int posX;
-	static int calcPosY;
-	static int posY;	
-	static int ProjSpeed1 = 10;
-	static int GrowthSpeed = 500;
+import javax.imageio.ImageIO;
+
+public class Projectile {
+	private double projectileX;
+	private double projectileY;
+	BufferedImage image;
 	
-	public static void init() {
-		Thread ThreadA = new Thread (Threadrun);
-		ThreadA.start();
-		Thread ThreadB = new Thread (Threadrun1);
-		ThreadB.start();
-		System.out.println("Projectile INIT");
+	public Projectile(double X, double Y)
+	{
+		projectileX = X;
+		projectileY = Y;
+		
+    	try
+    	{
+    		image = ImageIO.read(new File("Bullet.png"));
+    	} catch (IOException ex) { } 
 	}
 	
-	static Runnable Threadrun = new Runnable(){
-		public void run() {
-			while (true) {
-				
-				if (RandomProjectileLoc == true)
-				{
-					
-					calcPosX = (int) Math.rint(Math.random() * 1000);
-					if (calcPosX > 10 && calcPosX < 390)
-					{
-						RandomProjectileLoc = false;
-						posX = calcPosX;
-						if (ProjectZ.DebugModeOn())
-						{
-						System.out.println(posX);
-						}
-					}	
-				}
-				
-				if (calcPosY >= 443)
-				{
-						RandomProjectileLoc = true;
-						calcPosY = 50;
-						posY = calcPosY;
-				} 
-				else if (calcPosY <= 443) 
-				{
-						calcPosY = calcPosY + 5;
-						posY = calcPosY;
-				}
-				
-				try {
-				Thread.sleep(ProjSpeed1);	
-				}
-				catch (InterruptedException ex){}
-				}
-			}
-	};
+	public void tick() 
+	{
+		projectileY -= 10;
+	}
 	
-	static Runnable Threadrun1 = new Runnable(){
-		public void run() {
-			while (true) {
-				ProjSize = ProjSize + 1;
-				
-				try {
-				Thread.sleep(GrowthSpeed);	
-				}
-				catch (InterruptedException ex){}
-				}
-			}
-	};
+	public void render(Graphics g)
+	{
+		g.drawImage(image, (int) projectileX, (int) projectileY, null);
+	}
 }
 	
 

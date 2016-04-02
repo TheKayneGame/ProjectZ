@@ -1,0 +1,54 @@
+	Thread ThreadA;
+	static int ProjSize = 20;
+	static boolean RandomProjectileLoc;
+	static int calcPosX;
+	static int posX;
+	static int calcPosY;
+	static int posY;	
+	static double ProjSpeed1 = 10;
+
+public static void init() {
+		Thread ThreadA = new Thread (Threadrun);
+		ThreadA.start();
+		System.out.println("Projectile INIT");
+	}
+	
+	static Runnable Threadrun = new Runnable(){
+		public void run() {
+			while (true) {
+				
+				if (RandomProjectileLoc == true)
+				{
+					
+					calcPosX = (int) Math.rint(Math.random() * 1000);
+					if (calcPosX > 10 && calcPosX < 390)
+					{
+						RandomProjectileLoc = false;
+						posX = calcPosX;
+						if (ProjectZ.DebugModeOn())
+						{
+						System.out.println(posX);
+						}
+					}	
+				}
+				
+				if (calcPosY >= 443)
+				{
+						RandomProjectileLoc = true;
+						calcPosY = 50;
+						calcPosX = calcPosX + 1;
+						posY = calcPosY;
+				} 
+				else if (calcPosY <= 443) 
+				{
+						calcPosY = calcPosY + 1;
+						posY = calcPosY;
+				}
+				
+				try {
+				Thread.sleep((long) (ProjSpeed1));	
+				}
+				catch (InterruptedException ex){}
+				}
+			}
+	};
