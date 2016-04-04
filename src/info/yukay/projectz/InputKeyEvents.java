@@ -11,12 +11,15 @@ public class InputKeyEvents extends KeyAdapter
 	static int KeyThreadSpeed = 5;
 	static int key;
 	static boolean Debug;
+	private static Controller controller;
 	
 	public static void init() 
 	{
 		Thread KeyThread = new Thread (Threadrun);
 		KeyThread.start();
 		System.out.println("KeyEvents INIT");
+		
+		controller = new Controller();
 	}
 	
 	public void keyPressed(KeyEvent e)
@@ -41,9 +44,8 @@ public class InputKeyEvents extends KeyAdapter
 			}
 			System.out.println("DebugMode: " + ProjectZ.DebugModeOn());
 			break;
-			
 		case KeyEvent.VK_E:
-			Projectile.RandomProjectileLoc = true;
+			controller.b.add(new Projectile(50, 50));
 			break;
 		}
 	}

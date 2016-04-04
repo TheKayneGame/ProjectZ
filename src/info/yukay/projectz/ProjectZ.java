@@ -33,10 +33,13 @@ public class ProjectZ extends Applet implements ActionListener
     Image Buffer;
     Graphics gBuff;
     Dimension dim;
+    private Controller controller;
 
     
     public void init()
     {
+    	controller = new Controller ();
+    	controller.b.add(new Projectile(10, 10));
     	//set Values For Window
     	System.out.println("ProjectZ INIT");
         addKeyListener(new InputKeyEvents());
@@ -46,7 +49,7 @@ public class ProjectZ extends Applet implements ActionListener
         //Initializes Supplementary Classes
         //Projectile.init();
         InputKeyEvents.init();
-        Projectile.init();
+        
        
     	//Starts Timer For 
         timer = new Timer(10, this);
@@ -78,9 +81,9 @@ public class ProjectZ extends Applet implements ActionListener
     	dim = getSize();
     	gBuff.clearRect(0, 0, dim.width, dim.height);
     	gBuff.drawImage(SpaceShip, Player.getX(), Player.getY(), this); 
-    	gBuff.drawImage(Bullet, Projectile.posX, Projectile.posY, this);
+    	//Buff.drawImage(Bullet, Projectile.posX, Projectile.posY, this);
     	gBuff.drawRect(10, 10, 400, 450 );
-    	
+    	controller.render(g);
     	
     	g.drawImage(Buffer,0,0,this);
     }
@@ -88,6 +91,7 @@ public class ProjectZ extends Applet implements ActionListener
     public void update(Graphics g)
     {
     	paint(g);
+    	controller.tick();
     }
     
     public static void DebugSwitch(boolean i)

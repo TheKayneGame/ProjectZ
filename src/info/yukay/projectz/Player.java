@@ -50,7 +50,7 @@ public class Player
 		}
 		if (ProjectZ.DebugModeOn())
 		{
-		System.out.print("Key: "+InputKeyEvents.getKey());
+		System.out.print("Key: "+ InputKeyEvents.getKey());
 		System.out.print("; X: "+x);
 		System.out.println("; Y: "+y);
 		}

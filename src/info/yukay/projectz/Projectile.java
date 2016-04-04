@@ -25,7 +25,7 @@ public class Projectile {
 	
 	public void tick() 
 	{
-		projectileY -= 10;
+		projectileY = -10;
 	}
 	
 	public void render(Graphics g)
