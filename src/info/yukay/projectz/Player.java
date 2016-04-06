@@ -4,6 +4,9 @@ public class Player
 {
 	private static int x = 200, y = 420;
 	
+	public void init(){
+		System.out.println("Player INIT");
+	}
 	public static int getX()
 	{
 		return x;
@@ -14,18 +17,50 @@ public class Player
 		return y;
 	}
 	
-	public static void setX(int i)
+	public static void move(int i, int e)
 	{
-		x = i;
-		System.out.print("Key: "+InputKeyEvents.getKey());
+		
+		switch(e)
+		{
+		case 1:
+			if (Player.getY() >= 11)
+			{
+				y = y - i;
+			}
+			break;
+		case 2:
+			if (Player.getY() <= 443)
+			{
+			y = y + i;
+			}
+			break;
+		case 3:
+			if (Player.getX() >= 11)
+			{
+			x =x - i;
+			}
+			break;
+		case 4:
+			if (Player.getX() <= 394)
+			{
+			x = x + i;
+			}
+			break;
+		
+		}
+		if (ProjectZ.DebugModeOn())
+		{
+		System.out.print("Key: "+ InputKeyEvents.getKey());
 		System.out.print("; X: "+x);
 		System.out.println("; Y: "+y);
+		}
 	}
-	public static void setY(int i)
-	{
-		y = i;
-		System.out.print("Key: "+InputKeyEvents.getKey());
-		System.out.print("; X: "+x);
-		System.out.println("; Y: "+y);
-	}
+//	public static void setY(int i)
+//	{
+//		y = i;
+//		
+//		System.out.print("Key: "+InputKeyEvents.getKey());
+//		System.out.print("; X: "+x);
+//		System.out.println("; Y: "+y);
+//	}
 }

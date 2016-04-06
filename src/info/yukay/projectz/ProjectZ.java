@@ -18,35 +18,44 @@ import javax.swing.Timer;
 @SuppressWarnings("serial")
 public class ProjectZ extends Applet implements ActionListener
 {
-    int Field[][];
+    static boolean Debug;
+	int Field[][];
     int FieldWidth = 31;
     int FieldHeight = 40;
     int ticks = 0;
     int BulletCount = 2;
     
-    private BufferedImage SpaceShip; 
+    private BufferedImage SpaceShip;
+    private BufferedImage Bullet;
+ 
     //Image SpaceShip1;
     Timer timer;
     Image Buffer;
     Graphics gBuff;
     Dimension dim;
+    private Controller controller;
 
     
     public void init()
     {
-    	System.out.println("ProjectZ init");
+    	controller = new Controller ();
+    	controller.b.add(new Projectile(10, 10));
+    	//set Values For Window
+    	System.out.println("ProjectZ INIT");
         addKeyListener(new InputKeyEvents());
         setFocusable(true);
-        Projectile.init();
         setSize(600, 500);
         
+        //Initializes Supplementary Classes
+        //Projectile.init();
+        InputKeyEvents.init();
         
-        //SpaceShip1 = getImage(getCodeBase(), "SpaceShip.png");
        
-    	
+    	//Starts Timer For 
         timer = new Timer(10, this);
     	timer.start();
         
+    	//Creates Buffer
     	dim = getSize();
     	Buffer = createImage(dim.width, dim.height);
     	gBuff = Buffer.getGraphics();
@@ -55,6 +64,7 @@ public class ProjectZ extends Applet implements ActionListener
     	try
     	{
     		SpaceShip = ImageIO.read(new File("SpaceShip.png"));
+    		Bullet = ImageIO.read(new File("Bullet.png"));
     	} catch (IOException ex) { } 
     }
     
@@ -71,8 +81,10 @@ public class ProjectZ extends Applet implements ActionListener
     	dim = getSize();
     	gBuff.clearRect(0, 0, dim.width, dim.height);
     	gBuff.drawImage(SpaceShip, Player.getX(), Player.getY(), this); 
+    	//Buff.drawImage(Bullet, Projectile.posX, Projectile.posY, this);
     	gBuff.drawRect(10, 10, 400, 450 );
-    	gBuff.fillOval(50, 50, 20, 20);
+    	controller.render(g);
+    	
     	g.drawImage(Buffer,0,0,this);
     	
     }
@@ -80,5 +92,16 @@ public class ProjectZ extends Applet implements ActionListener
     public void update(Graphics g)
     {
     	paint(g);
+    	controller.tick();
+    }
+    
+    public static void DebugSwitch(boolean i)
+    {
+    	Debug = i;
+    }
+    
+    public static boolean DebugModeOn()
+    {
+    	return Debug;
     }
 }

@@ -1,46 +1,37 @@
 package info.yukay.projectz;
 
-import java.awt.MouseInfo;
-import java.awt.event.KeyEvent;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-public class Projectile{
+import javax.imageio.ImageIO;
 
-	Thread ThreadA;
-	static double posX;
-	static int TrSpeed1 = 100;
+public class Projectile {
+	private double projectileX;
+	private double projectileY;
+	BufferedImage image;
 	
-	public static void init() {
-		Thread ThreadA = new Thread (Threadrun);
-		ThreadA.start();
-		System.out.println("Projectile INIT");
+	public Projectile(double X, double Y)
+	{
+		projectileX = X;
+		projectileY = Y;
+		
+    	try
+    	{
+    		image = ImageIO.read(new File("Bullet.png"));
+    	} catch (IOException ex) { } 
 	}
 	
+	public void tick() 
+	{
+		projectileY = -10;
+	}
 	
-	static Runnable Threadrun = new Runnable(){
-
-
-	public void run() {
-		while (true) {
-			
-			if (InputKeyEvents.getKey() == KeyEvent.VK_Q)
-			{
-				
-				posX = Math.random();
-				posX = posX * 1000;
-				posX = Math.rint(posX);
-				if (posX > 10 && posX < 410)
-				{
-					System.out.println(posX);
-				}
-			}
-			
-			try {
-			Thread.sleep(TrSpeed1);	
-			}
-			catch (InterruptedException ex){}
-			}
-		}
-	};
+	public void render(Graphics g)
+	{
+		g.drawImage(image, (int) projectileX, (int) projectileY, null);
+	}
 }
 	
 
