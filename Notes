@@ -52,3 +52,29 @@ public static void init() {
 				}
 			}
 	};
+	
+	//-------------------------------------------------------------------------------//
+	private double projectileX;
+	private double projectileY;
+	BufferedImage image;
+	
+	public Projectile(double X, double Y)
+	{
+		projectileX = X;
+		projectileY = Y;
+		
+    	try
+    	{
+    		image = ImageIO.read(new File("Bullet.png"));
+    	} catch (IOException ex) { } 
+	}
+	
+	public void tick() 
+	{
+		projectileY = -10;
+	}
+	
+	public void render(Graphics g)
+	{
+		g.drawImage(image, (int) projectileX, (int) projectileY, null);
+	}
