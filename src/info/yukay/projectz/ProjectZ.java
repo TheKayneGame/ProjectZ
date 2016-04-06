@@ -74,6 +74,7 @@ public class ProjectZ extends Applet implements ActionListener
     	gBuff.drawRect(10, 10, 400, 450 );
     	gBuff.fillOval(50, 50, 20, 20);
     	g.drawImage(Buffer,0,0,this);
+    	
     }
     
     public void update(Graphics g)
