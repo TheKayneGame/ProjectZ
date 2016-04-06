@@ -13,6 +13,12 @@ public class InputKeyEvents extends KeyAdapter
 	static boolean Debug;
 	private static Projectile projectile;
 	
+	//Keys
+	static boolean VK_W;
+	static boolean VK_A;
+	static boolean VK_S;
+	static boolean VK_D;
+	
 	public static void init() 
 	{
 		Thread KeyThread = new Thread (Threadrun);
@@ -24,16 +30,9 @@ public class InputKeyEvents extends KeyAdapter
 	
 	public void keyPressed(KeyEvent e)
 	{
-		switch(e.getKeyCode())
-		{
-		case KeyEvent.VK_W: 
-		case KeyEvent.VK_A:  
-		case KeyEvent.VK_S: 
-		case KeyEvent.VK_D:
-			key = e.getKeyCode();
-			break;
-		
-		case KeyEvent.VK_Q:
+
+		if (e.getKeyCode() == KeyEvent.VK_Q)
+			{
 			if (ProjectZ.DebugModeOn() == true)
 			{
 				ProjectZ.DebugSwitch(false);
@@ -43,66 +42,73 @@ public class InputKeyEvents extends KeyAdapter
 				ProjectZ.DebugSwitch(true);
 			}
 			System.out.println("DebugMode: " + ProjectZ.DebugModeOn());
+		}
+		
+		switch(e.getKeyCode())
+		{
+		case KeyEvent.VK_W:
+			VK_W = true;
 			break;
-		case KeyEvent.VK_E:
-			projectile.addProjectile();
+		case KeyEvent.VK_A:
+			VK_A = true;
+			break;
+		case KeyEvent.VK_S:
+			VK_S = true;
+			break; 
+		case KeyEvent.VK_D:
+			VK_D = true;
+			break;
+		case KeyEvent.VK_SPACE:
+			Projectile.Shooting = true;
 			break;
 		}
 	}
 	
+	
 	public void keyReleased(KeyEvent e)
-	{
-		switch(e.getKeyCode())
-		{
-		case KeyEvent.VK_W: 
-		case KeyEvent.VK_A:  
-		case KeyEvent.VK_S: 
-		case KeyEvent.VK_D:
-			break;
-		}
-			
+	{		
 		switch(e.getKeyCode())
 		{
 		case KeyEvent.VK_W:
-			
+			VK_W = false;
 			break;
 		case KeyEvent.VK_A:
+			VK_A = false;
 			break;
-		case KeyEvent.VK_S: 
-			break;
+		case KeyEvent.VK_S:
+			VK_S = false;
+			break; 
 		case KeyEvent.VK_D:
+			VK_D = false;
+		case KeyEvent.VK_SPACE:
+			Projectile.Shooting = false;
 			break;
-		
 		}
 	}
 	static Runnable Threadrun = new Runnable()
 	{
-		
+
 		public void run() 
 		{
 			System.out.println("Thread Runned");
 			while (true) 
 			{
-				
-				switch(key)
+				if(VK_W)
 				{
-				case KeyEvent.VK_W:
 					Player.move(1, 1);
-					break;
-					
-				case KeyEvent.VK_S:
-					Player.move(1, 2);					
-					break;
-					
-				case KeyEvent.VK_A:
+				}
+				if(VK_S)
+				{
+					Player.move(1, 2);
+				}
+				if(VK_A)
+				{
 					Player.move(1, 3);
-					break;
-					
-				case KeyEvent.VK_D:
+				}
+				if(VK_D)
+				{
 					Player.move(1, 4);
-					break;
 				}	
-
 				try 
 				{
 					Thread.sleep(KeyThreadSpeed);
