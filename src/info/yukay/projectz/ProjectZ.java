@@ -35,7 +35,7 @@ public class ProjectZ extends Applet implements ActionListener
     //Image SpaceShip1;
     Timer timer;
     Image Buffer;
-    static Graphics gBuff;
+    Graphics gBuff;
     Dimension dim;
     private Projectile projectile;
     
@@ -50,7 +50,7 @@ public class ProjectZ extends Applet implements ActionListener
         setSize(600, 500);
         
         //Initializes Supplementary Classes
-        Projectile.init();
+        projectile.init();
         InputKeyEvents.init();
         
         
@@ -104,7 +104,7 @@ public class ProjectZ extends Applet implements ActionListener
     	//controller.tick();
     }
     
-   
+  
     
     public static void DebugSwitch(boolean i)
     {

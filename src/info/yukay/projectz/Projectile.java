@@ -1,6 +1,5 @@
 package info.yukay.projectz;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -12,19 +11,27 @@ import javax.imageio.ImageIO;
 public class Projectile extends ProjectZ {
 	static List<Integer> ProjectilesX = new ArrayList<Integer>();
 	static List<Integer> ProjectilesY = new ArrayList<Integer>();
-	private static BufferedImage Bullet;
+	static BufferedImage Bullet;
 	static int x;
 	static int y;
-	static Thread ProjectileThread;
+	static Thread ProjectileMoveThread;
+	static Thread ProjectileSpawnThread;
 	static boolean Shooting;
+	ProjectZ projectz;
 	
 	public void init(){
+		System.out.println("Projectile INIT");
+		ProjectileMoveThread = new Thread (Threadrun);
+		ProjectileSpawnThread = new Thread (Threadrun1);
+		ProjectileMoveThread.start();
+		ProjectileSpawnThread.start();
+		projectz = new ProjectZ();
 		
-		ProjectileThread = new Thread (Threadrun);
-		ProjectileThread.start();
-		try {
-			Bullet = ImageIO.read(new File("Bullet.png"));
-		} catch (IOException e) {}
+		try
+    	{
+    		Bullet = ImageIO.read(new File("Bullet.png"));   		
+    	} catch (IOException ex) { } 
+		
 	}
 	
 	public void addProjectile() {
@@ -37,26 +44,21 @@ public class Projectile extends ProjectZ {
 	}
 
 	
-	static Runnable Threadrun = new Runnable()
+	Runnable Threadrun = new Runnable()
 	{
-
-		
-
 		public void run() 
 		{
 			System.out.println("Thread Runned");
+			
+			
+			
 			while (true) 
 			{
-				if (Shooting)
-				{
-					x = Player.getX();
-					y = Player.getY();
-					ProjectilesX.add(x);
-					ProjectilesY.add(y);
-				}
+				
 				for(int i = 0; i < ProjectilesY.size() ; i++)
 				{
-					gBuff.drawImage(Bullet, ProjectilesX.get(i), ProjectilesY.get(i),1,1, this);
+					//ProjectZ.gBuff.drawImage(Bullet, ProjectilesX.get(i), ProjectilesY.get(i), this);
+					//drawBullet(ProjectilesX.get(i), ProjectilesY.get(i));
 					ProjectilesY.set(i, ProjectilesY.get(i) - 1);
 					if(ProjectilesY.get(i) < 11)
 					{
@@ -71,16 +73,49 @@ public class Projectile extends ProjectZ {
 					{
 						System.out.println(ProjectilesX.get(i)+ " " + ProjectilesY.get(i));
 					}
+				
 				}
 				try 
 				{
-					Thread.sleep(100);
+					Thread.sleep(2);
+				}
+				catch (InterruptedException ex){}
+			}
+		}
+	};
+	Runnable Threadrun1 = new Runnable()
+	{
+		public void run() 
+		{
+			System.out.println("Thread Runned");
+			while (true) 
+			{
+				if (Shooting)
+				{
+					x = Player.getX();
+					y = Player.getY();
+					ProjectilesX.add(x);
+					ProjectilesY.add(y);
+					try 
+					{
+						Thread.sleep(100);
+					}
+					catch (InterruptedException ex){}
+				}
+				
+				try 
+				{
+					Thread.sleep(10);
 				}
 				catch (InterruptedException ex){}
 			}
 		}
 	};
 	
-	
+	public void drawBullet(int i, int e)
+	{
+		projectz.gBuff.drawImage(Bullet, ProjectilesX.get(i), ProjectilesY.get(e), this);
+		System.out.println("1521");
+	}
 
 }

@@ -11,7 +11,7 @@ public class InputKeyEvents extends KeyAdapter
 	static int KeyThreadSpeed = 5;
 	static int key;
 	static boolean Debug;
-	private static Projectile projectile;
+	static Projectile projectile;
 	
 	//Keys
 	static boolean VK_W;
@@ -44,6 +44,11 @@ public class InputKeyEvents extends KeyAdapter
 			System.out.println("DebugMode: " + ProjectZ.DebugModeOn());
 		}
 		
+		if (e.getKeyCode() == KeyEvent.VK_SPACE)
+		{
+			Projectile.Shooting = true;
+		}
+		
 		switch(e.getKeyCode())
 		{
 		case KeyEvent.VK_W:
@@ -57,9 +62,6 @@ public class InputKeyEvents extends KeyAdapter
 			break; 
 		case KeyEvent.VK_D:
 			VK_D = true;
-			break;
-		case KeyEvent.VK_SPACE:
-			Projectile.Shooting = true;
 			break;
 		}
 	}
@@ -80,9 +82,11 @@ public class InputKeyEvents extends KeyAdapter
 			break; 
 		case KeyEvent.VK_D:
 			VK_D = false;
-		case KeyEvent.VK_SPACE:
-			Projectile.Shooting = false;
 			break;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_SPACE)
+		{
+			Projectile.Shooting = false;
 		}
 	}
 	static Runnable Threadrun = new Runnable()
