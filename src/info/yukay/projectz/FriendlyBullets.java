@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-public class Projectile extends ProjectZ {
+public class FriendlyBullets {
 	static List<Integer> ProjectilesX = new ArrayList<Integer>();
 	static List<Integer> ProjectilesY = new ArrayList<Integer>();
 	static BufferedImage Bullet;
@@ -17,15 +17,16 @@ public class Projectile extends ProjectZ {
 	static Thread ProjectileMoveThread;
 	static Thread ProjectileSpawnThread;
 	static boolean Shooting;
-	ProjectZ projectz;
+	int Cooldown;
+	
 	
 	public void init(){
-		System.out.println("Projectile INIT");
+		System.out.println("FriendlyBullets INIT");
 		ProjectileMoveThread = new Thread (Threadrun);
 		ProjectileSpawnThread = new Thread (Threadrun1);
 		ProjectileMoveThread.start();
 		ProjectileSpawnThread.start();
-		projectz = new ProjectZ();
+		
 		
 		try
     	{
@@ -34,14 +35,6 @@ public class Projectile extends ProjectZ {
 		
 	}
 	
-	public void addProjectile() {
-		x = Player.getX();
-		y = Player.getY();
-		ProjectilesX.add(x);
-		ProjectilesY.add(y);
-		System.out.println("ldl");
-		
-	}
 
 	
 	Runnable Threadrun = new Runnable()
@@ -60,7 +53,7 @@ public class Projectile extends ProjectZ {
 					//ProjectZ.gBuff.drawImage(Bullet, ProjectilesX.get(i), ProjectilesY.get(i), this);
 					//drawBullet(ProjectilesX.get(i), ProjectilesY.get(i));
 					ProjectilesY.set(i, ProjectilesY.get(i) - 1);
-					if(ProjectilesY.get(i) < 11)
+					if(ProjectilesY.get(i) < 9)
 					{
 						ProjectilesX.remove(i);
 						ProjectilesY.remove(i);
@@ -95,10 +88,11 @@ public class Projectile extends ProjectZ {
 					x = Player.getX();
 					y = Player.getY();
 					ProjectilesX.add(x);
-					ProjectilesY.add(y);
+					ProjectilesY.add(y - 10);
+					
 					try 
 					{
-						Thread.sleep(100);
+						Thread.sleep(500);
 					}
 					catch (InterruptedException ex){}
 				}
@@ -112,10 +106,10 @@ public class Projectile extends ProjectZ {
 		}
 	};
 	
-	public void drawBullet(int i, int e)
-	{
-		projectz.gBuff.drawImage(Bullet, ProjectilesX.get(i), ProjectilesY.get(e), this);
-		System.out.println("1521");
-	}
+//	public void drawBullet(int i, int e)
+//	{
+//		projectz.gBuff.drawImage(Bullet, ProjectilesX.get(i), ProjectilesY.get(e), this);
+//		System.out.println("1521");
+//	}
 
 }

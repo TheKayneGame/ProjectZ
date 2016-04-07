@@ -5,32 +5,32 @@ import java.awt.event.KeyEvent;
 
 public class InputKeyEvents extends KeyAdapter
 {
-	Thread KeyThread;
+	//Thread KeyThread;
 	int key3;
-	static double posX;
-	static int KeyThreadSpeed = 5;
+	double posX;
+	int KeyThreadSpeed = 5;
 	static int key;
-	static boolean Debug;
-	static Projectile projectile;
+	boolean Debug;
 	
 	//Keys
-	static boolean VK_W;
-	static boolean VK_A;
-	static boolean VK_S;
-	static boolean VK_D;
+	static boolean moveUp;
+	static boolean moveLeft;
+	static boolean moveDown;
+	static boolean moveRight;
 	
-	public static void init() 
+	
+	public void init() 
 	{
 		Thread KeyThread = new Thread (Threadrun);
 		KeyThread.start();
 		System.out.println("KeyEvents INIT");
 		
-		projectile = new Projectile();
+
 	}
 	
 	public void keyPressed(KeyEvent e)
 	{
-
+		
 		if (e.getKeyCode() == KeyEvent.VK_Q)
 			{
 			if (ProjectZ.DebugModeOn() == true)
@@ -46,22 +46,27 @@ public class InputKeyEvents extends KeyAdapter
 		
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
 		{
-			Projectile.Shooting = true;
+			FriendlyBullets.Shooting = true;
+		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_UP)
+		{
+			moveUp = true;
 		}
 		
 		switch(e.getKeyCode())
 		{
 		case KeyEvent.VK_W:
-			VK_W = true;
+			moveUp = true;
 			break;
 		case KeyEvent.VK_A:
-			VK_A = true;
+			moveLeft = true;
 			break;
 		case KeyEvent.VK_S:
-			VK_S = true;
+			moveDown = true;
 			break; 
 		case KeyEvent.VK_D:
-			VK_D = true;
+			moveRight = true;
 			break;
 		}
 	}
@@ -72,24 +77,24 @@ public class InputKeyEvents extends KeyAdapter
 		switch(e.getKeyCode())
 		{
 		case KeyEvent.VK_W:
-			VK_W = false;
+			moveUp = false;
 			break;
 		case KeyEvent.VK_A:
-			VK_A = false;
+			moveLeft = false;
 			break;
 		case KeyEvent.VK_S:
-			VK_S = false;
+			moveDown = false;
 			break; 
 		case KeyEvent.VK_D:
-			VK_D = false;
+			moveRight = false;
 			break;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
 		{
-			Projectile.Shooting = false;
+			FriendlyBullets.Shooting = false;
 		}
 	}
-	static Runnable Threadrun = new Runnable()
+	Runnable Threadrun = new Runnable()
 	{
 
 		public void run() 
@@ -97,19 +102,21 @@ public class InputKeyEvents extends KeyAdapter
 			System.out.println("Thread Runned");
 			while (true) 
 			{
-				if(VK_W)
+				
+				if(moveUp)
 				{
 					Player.move(1, 1);
+					
 				}
-				if(VK_S)
+				if(moveDown)
 				{
 					Player.move(1, 2);
 				}
-				if(VK_A)
+				if(moveLeft)
 				{
 					Player.move(1, 3);
 				}
-				if(VK_D)
+				if(moveRight)
 				{
 					Player.move(1, 4);
 				}	
@@ -122,10 +129,7 @@ public class InputKeyEvents extends KeyAdapter
 		}
 	};
 	
-	public static int getKey() 
-	{
-		return key;
-	}
+	
 	
 }
 

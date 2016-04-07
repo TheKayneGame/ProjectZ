@@ -2,11 +2,9 @@ package info.yukay.projectz;
 
 public class Player
 {
-	private static int x = 200, y = 420;
-	
-	public void init(){
-		System.out.println("Player INIT");
-	}
+	private static int x = 200;
+	private static int y = 420;
+	        
 	public static int getX()
 	{
 		return x;
@@ -50,7 +48,7 @@ public class Player
 		}
 		if (ProjectZ.DebugModeOn())
 		{
-		System.out.print("Key: "+ InputKeyEvents.getKey());
+		System.out.print("Key: "+ InputKeyEvents.key);
 		System.out.print("; X: "+x);
 		System.out.println("; Y: "+y);
 		}

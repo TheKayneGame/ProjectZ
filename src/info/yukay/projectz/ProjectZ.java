@@ -29,28 +29,29 @@ public class ProjectZ extends Applet implements ActionListener
     
     private BufferedImage SpaceShip;
     private static BufferedImage Bullet;
+    FriendlyBullets FriendlyBullets = new FriendlyBullets ();
+    InputKeyEvents InputKeyEvents = new InputKeyEvents();
     
-    
- 
     //Image SpaceShip1;
     Timer timer;
     Image Buffer;
     Graphics gBuff;
     Dimension dim;
-    private Projectile projectile;
     
     public void init()
     {
-    	projectile = new Projectile ();
     	
-    	//set Values For Window
-    	System.out.println("ProjectZ INIT");
+    	
+    	
         addKeyListener(new InputKeyEvents());
         setFocusable(true);
+        
+        
         setSize(600, 500);
+        System.out.println("ProjectZ INIT");
         
         //Initializes Supplementary Classes
-        projectile.init();
+        FriendlyBullets.init();
         InputKeyEvents.init();
         
         
@@ -89,9 +90,10 @@ public class ProjectZ extends Applet implements ActionListener
     	gBuff.drawImage(SpaceShip, Player.getX(), Player.getY(), this); 
     	gBuff.drawRect(10, 10, 400, 450 );
     	//controller.render(g);
-    	for(int i = 0; i < projectile.ProjectilesY.size() ; i++)
+    	//Adds List To Buffer
+    	for(int i = 0; i < FriendlyBullets.ProjectilesY.size() ; i++)
 		{
-			gBuff.drawImage(Bullet, projectile.ProjectilesX.get(i), projectile.ProjectilesY.get(i), this);
+			gBuff.drawImage(Bullet, FriendlyBullets.ProjectilesX.get(i), FriendlyBullets.ProjectilesY.get(i), this);
 		}
     	
     	g.drawImage(Buffer,0,0,this);
@@ -101,6 +103,7 @@ public class ProjectZ extends Applet implements ActionListener
     public void update(Graphics g)
     {
     	paint(g);
+    	setSize(600, 500);
     	//controller.tick();
     }
     
