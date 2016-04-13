@@ -27,7 +27,7 @@ public class Player
 			}
 			break;
 		case 2:
-			if (Player.getY() <= 443)
+			if (Player.getY() <= 428)
 			{
 			y = y + i;
 			}

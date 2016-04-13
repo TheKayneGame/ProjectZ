@@ -1,5 +1,6 @@
 package info.yukay.projectz;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +19,8 @@ public class FriendlyBullets {
 	static Thread ProjectileSpawnThread;
 	static boolean Shooting;
 	int Cooldown;
-	
+	Rectangle BulletHitbox;
+	Rectangle Hitbox = new Rectangle(10, 10, 20, 450);
 	
 	public void init(){
 		System.out.println("FriendlyBullets INIT");
@@ -55,6 +57,7 @@ public class FriendlyBullets {
 					ProjectilesY.set(i, ProjectilesY.get(i) - 1);
 					if(ProjectilesY.get(i) < 9)
 					{
+						BulletHitbox = new Rectangle(ProjectilesX.get(i),ProjectilesY.get(i), 16, 16);
 						ProjectilesX.remove(i);
 						ProjectilesY.remove(i);
 						if(ProjectZ.DebugModeOn())
@@ -68,9 +71,12 @@ public class FriendlyBullets {
 					}
 				
 				}
+//				if(BulletHitbox.intersects(Hitbox)){
+//					System.out.println("111");
+//				}
 				try 
 				{
-					Thread.sleep(2);
+					Thread.sleep(3);
 				}
 				catch (InterruptedException ex){}
 			}
@@ -87,16 +93,15 @@ public class FriendlyBullets {
 				{
 					x = Player.getX();
 					y = Player.getY();
-					ProjectilesX.add(x);
+					ProjectilesX.add(x + 9);
 					ProjectilesY.add(y - 10);
 					
 					try 
 					{
-						Thread.sleep(500);
+						Thread.sleep(100);
 					}
 					catch (InterruptedException ex){}
 				}
-				
 				try 
 				{
 					Thread.sleep(10);
