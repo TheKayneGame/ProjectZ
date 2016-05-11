@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 public class FriendlyBullets {
 	static List<Integer> ProjectilesX = new ArrayList<Integer>();
 	static List<Integer> ProjectilesY = new ArrayList<Integer>();
+	
 	static BufferedImage Bullet;
 	static int x;
 	static int y;
@@ -93,7 +94,7 @@ public class FriendlyBullets {
 				{
 					x = Player.getX();
 					y = Player.getY();
-					ProjectilesX.add(x + 9);
+					ProjectilesX.add(x + 8);
 					ProjectilesY.add(y - 10);
 					
 					try 
