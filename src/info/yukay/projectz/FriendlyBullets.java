@@ -93,7 +93,7 @@ public class FriendlyBullets {
 				{
 					x = Player.getX();
 					y = Player.getY();
-					ProjectilesX.add(x + 9);
+					ProjectilesX.add(x + 8);
 					ProjectilesY.add(y - 10);
 					
 					try 

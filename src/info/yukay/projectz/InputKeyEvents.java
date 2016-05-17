@@ -49,11 +49,6 @@ public class InputKeyEvents extends KeyAdapter
 			FriendlyBullets.Shooting = true;
 		}
 		
-		if (e.getKeyCode() == KeyEvent.VK_UP)
-		{
-			moveUp = true;
-		}
-		
 		switch(e.getKeyCode())
 		{
 		case KeyEvent.VK_W:

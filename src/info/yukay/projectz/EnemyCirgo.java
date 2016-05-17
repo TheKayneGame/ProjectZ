@@ -1,5 +1,5 @@
 package info.yukay.projectz;
 
-public class Entity {
+public class EnemyCirgo {
 
 }
