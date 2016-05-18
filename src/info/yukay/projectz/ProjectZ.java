@@ -31,7 +31,7 @@ public class ProjectZ extends Applet implements ActionListener
     private static BufferedImage Bullet;
     FriendlyBullets FriendlyBullets = new FriendlyBullets ();
     InputKeyEvents InputKeyEvents = new InputKeyEvents();
-    
+    Enemy1 Enemy1 = new Enemy1();
     //Image SpaceShip1;
     Timer timer;
     Image Buffer;
@@ -53,7 +53,7 @@ public class ProjectZ extends Applet implements ActionListener
         //Initializes Supplementary Classes
         FriendlyBullets.init();
         InputKeyEvents.init();
-        
+        Enemy1.init();
         
        
     	//Starts Timer For 
@@ -88,6 +88,7 @@ public class ProjectZ extends Applet implements ActionListener
     	dim = getSize();
     	gBuff.clearRect(0, 0, dim.width, dim.height);
     	gBuff.drawImage(SpaceShip, Player.getX(), Player.getY(), this); 
+    	gBuff.fillRect(Enemy1.x, Enemy1.y, 10, 10);
     	gBuff.drawRect(10, 10, 400, 450 );
     	//controller.render(g);
     	//Adds List To Buffer

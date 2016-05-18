@@ -57,7 +57,6 @@ public class FriendlyBullets {
 					ProjectilesY.set(i, ProjectilesY.get(i) - 1);
 					if(ProjectilesY.get(i) < 9)
 					{
-						BulletHitbox = new Rectangle(ProjectilesX.get(i),ProjectilesY.get(i), 16, 16);
 						ProjectilesX.remove(i);
 						ProjectilesY.remove(i);
 						if(ProjectZ.DebugModeOn())
@@ -71,9 +70,6 @@ public class FriendlyBullets {
 					}
 				
 				}
-//				if(BulletHitbox.intersects(Hitbox)){
-//					System.out.println("111");
-//				}
 				try 
 				{
 					Thread.sleep(3);

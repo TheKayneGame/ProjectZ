@@ -13,10 +13,10 @@ public class InputKeyEvents extends KeyAdapter
 	boolean Debug;
 	
 	//Keys
-	static boolean moveUp;
-	static boolean moveLeft;
-	static boolean moveDown;
-	static boolean moveRight;
+	static boolean playermoveUp;
+	static boolean playermoveLeft;
+	static boolean playermoveDown;
+	static boolean playermoveRight;
 	
 	
 	public void init() 
@@ -52,16 +52,16 @@ public class InputKeyEvents extends KeyAdapter
 		switch(e.getKeyCode())
 		{
 		case KeyEvent.VK_W:
-			moveUp = true;
+			playermoveUp = true;
 			break;
 		case KeyEvent.VK_A:
-			moveLeft = true;
+			playermoveLeft = true;
 			break;
 		case KeyEvent.VK_S:
-			moveDown = true;
+			playermoveDown = true;
 			break; 
 		case KeyEvent.VK_D:
-			moveRight = true;
+			playermoveRight = true;
 			break;
 		}
 	}
@@ -72,16 +72,16 @@ public class InputKeyEvents extends KeyAdapter
 		switch(e.getKeyCode())
 		{
 		case KeyEvent.VK_W:
-			moveUp = false;
+			playermoveUp = false;
 			break;
 		case KeyEvent.VK_A:
-			moveLeft = false;
+			playermoveLeft = false;
 			break;
 		case KeyEvent.VK_S:
-			moveDown = false;
+			playermoveDown = false;
 			break; 
 		case KeyEvent.VK_D:
-			moveRight = false;
+			playermoveRight = false;
 			break;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
@@ -98,20 +98,20 @@ public class InputKeyEvents extends KeyAdapter
 			while (true) 
 			{
 				
-				if(moveUp)
+				if(playermoveUp)
 				{
 					Player.move(1, 1);
 					
 				}
-				if(moveDown)
+				if(playermoveDown)
 				{
 					Player.move(1, 2);
 				}
-				if(moveLeft)
+				if(playermoveLeft)
 				{
 					Player.move(1, 3);
 				}
-				if(moveRight)
+				if(playermoveRight)
 				{
 					Player.move(1, 4);
 				}	
