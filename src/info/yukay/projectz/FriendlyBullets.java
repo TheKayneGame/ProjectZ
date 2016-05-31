@@ -8,6 +8,7 @@ import java.util.List;
 public class FriendlyBullets {
 	static List<Integer> FProjectilesX = new ArrayList<Integer>();
 	static List<Integer> FProjectilesY = new ArrayList<Integer>();
+	
 	static BufferedImage Bullet;
 	static int x;
 	static int y;
