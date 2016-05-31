@@ -33,7 +33,7 @@ public class Player
 			}
 			break;
 		case 3:
-			if (Player.getX() >= 11)
+			if (Player.getX() >= 3)
 			{
 			x =x - i;
 			}

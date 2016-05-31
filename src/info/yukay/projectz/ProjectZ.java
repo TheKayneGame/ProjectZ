@@ -28,11 +28,13 @@ public class ProjectZ extends Applet implements ActionListener
     
     
     private BufferedImage SpaceShip;
-    private static BufferedImage Bullet;
+    private BufferedImage FBullet;
+    private BufferedImage EBullet;
     FriendlyBullets FriendlyBullets = new FriendlyBullets ();
     InputKeyEvents InputKeyEvents = new InputKeyEvents();
     Enemy1 Enemy1 = new Enemy1();
-    //Image SpaceShip1;
+    Collision Collision = new Collision();
+	//Image SpaceShip1;
     Timer timer;
     Image Buffer;
     Graphics gBuff;
@@ -54,6 +56,7 @@ public class ProjectZ extends Applet implements ActionListener
         FriendlyBullets.init();
         InputKeyEvents.init();
         Enemy1.init();
+        Collision.init();
         
        
     	//Starts Timer For 
@@ -69,8 +72,8 @@ public class ProjectZ extends Applet implements ActionListener
     	try
     	{
     		SpaceShip = ImageIO.read(new File("SpaceShip.png"));
-    		Bullet = ImageIO.read(new File("Bullet.png"));
-    		
+    		FBullet = ImageIO.read(new File("Bullet.png"));
+    		EBullet = ImageIO.read(new File("BulletEnemy.png"));
     	} catch (IOException ex) { } 
     }
     
@@ -92,9 +95,14 @@ public class ProjectZ extends Applet implements ActionListener
     	gBuff.drawRect(10, 10, 400, 450 );
     	//controller.render(g);
     	//Adds List To Buffer
-    	for(int i = 0; i < FriendlyBullets.ProjectilesY.size() ; i++)
+    	for(int i = 0; i < FriendlyBullets.FProjectilesY.size() ; i++)
 		{
-			gBuff.drawImage(Bullet, FriendlyBullets.ProjectilesX.get(i), FriendlyBullets.ProjectilesY.get(i), this);
+			gBuff.drawImage(FBullet, FriendlyBullets.FProjectilesX.get(i), FriendlyBullets.FProjectilesY.get(i), this);
+		}
+    	
+    	for(int i = 0; i < Enemy1.E1ProjectilesY.size() ; i++)
+		{
+			gBuff.drawImage(EBullet, Enemy1.E1ProjectilesX.get(i), Enemy1.E1ProjectilesY.get(i), this);
 		}
     	
     	g.drawImage(Buffer,0,0,this);

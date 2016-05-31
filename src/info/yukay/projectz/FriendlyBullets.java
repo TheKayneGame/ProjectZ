@@ -2,16 +2,12 @@ package info.yukay.projectz;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-
 public class FriendlyBullets {
-	static List<Integer> ProjectilesX = new ArrayList<Integer>();
-	static List<Integer> ProjectilesY = new ArrayList<Integer>();
+	static List<Integer> FProjectilesX = new ArrayList<Integer>();
+	static List<Integer> FProjectilesY = new ArrayList<Integer>();
 	static BufferedImage Bullet;
 	static int x;
 	static int y;
@@ -28,16 +24,20 @@ public class FriendlyBullets {
 		ProjectileSpawnThread = new Thread (Threadrun1);
 		ProjectileMoveThread.start();
 		ProjectileSpawnThread.start();
-		
-		
-		try
-    	{
-    		Bullet = ImageIO.read(new File("Bullet.png"));   		
-    	} catch (IOException ex) { } 
+	}
+	
+	public static void RemoveBullet(int i)
+	{
+		FProjectilesX.remove(i);
+		FProjectilesY.remove(i);
 		
 	}
 	
-
+	public void AddBullet(int eX, int eY)
+	{
+		FProjectilesX.add(eX + 8);
+		FProjectilesY.add(eY - 10);
+	}
 	
 	Runnable Threadrun = new Runnable()
 	{
@@ -50,15 +50,14 @@ public class FriendlyBullets {
 			while (true) 
 			{
 				
-				for(int i = 0; i < ProjectilesY.size() ; i++)
+				for(int i = 0; i < FProjectilesY.size() ; i++)
 				{
 					//ProjectZ.gBuff.drawImage(Bullet, ProjectilesX.get(i), ProjectilesY.get(i), this);
 					//drawBullet(ProjectilesX.get(i), ProjectilesY.get(i));
-					ProjectilesY.set(i, ProjectilesY.get(i) - 1);
-					if(ProjectilesY.get(i) < 9)
+					FProjectilesY.set(i, FProjectilesY.get(i) - 1);
+					if(FProjectilesY.get(i) < 9)
 					{
-						ProjectilesX.remove(i);
-						ProjectilesY.remove(i);
+						RemoveBullet(i);
 						if(ProjectZ.DebugModeOn())
 						{
 							System.out.println(i + "Removed");
@@ -66,13 +65,13 @@ public class FriendlyBullets {
 					}
 					if(ProjectZ.DebugModeOn())
 					{
-						System.out.println(ProjectilesX.get(i)+ " " + ProjectilesY.get(i));
+						System.out.println(FProjectilesX.get(i)+ " " + FProjectilesY.get(i));
 					}
 				
 				}
 				try 
 				{
-					Thread.sleep(3);
+					Thread.sleep(1);
 				}
 				catch (InterruptedException ex){}
 			}
@@ -89,12 +88,11 @@ public class FriendlyBullets {
 				{
 					x = Player.getX();
 					y = Player.getY();
-					ProjectilesX.add(x + 8);
-					ProjectilesY.add(y - 10);
+					AddBullet(x,y);
 					
 					try 
 					{
-						Thread.sleep(100);
+						Thread.sleep(500);
 					}
 					catch (InterruptedException ex){}
 				}
