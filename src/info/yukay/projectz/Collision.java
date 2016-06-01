@@ -22,26 +22,30 @@ public class Collision {
 				//Collision Check
 				
 				//Friendly bullets x Enemy
-				for(int i = 0; i<FriendlyBullets.FProjectilesX.size(); i++)
+				for(int i = 0; i<FriendlyBullets.FProjectilesY.size(); i++)
 				{
-					if(FriendlyBullets.FProjectilesX.get(i) + 4 > Enemy1.x 
-					&& FriendlyBullets.FProjectilesX.get(i) + 8 < Enemy1.x + 10
-					&& FriendlyBullets.FProjectilesY.get(i) < Enemy1.y
-					&& FriendlyBullets.FProjectilesY.get(i) + 16 > Enemy1.y + 10)
+					if(FriendlyBullets.FProjectilesX.get(i) + 4 >= Enemy1.x 
+					&& FriendlyBullets.FProjectilesX.get(i) + 8 <= Enemy1.x + 20
+					&& FriendlyBullets.FProjectilesY.get(i) <= Enemy1.y
+					&& FriendlyBullets.FProjectilesY.get(i) + 16 >= Enemy1.y + 20)
 					{
 						FriendlyBullets.RemoveBullet(i);
 						System.out.println("a");
 						try {
-							Thread.sleep(1);	
+							Thread.sleep(0);	
 						}
-						catch (InterruptedException ex){}
+						catch (InterruptedException ex){
+							
+						}
 					}
 					
 				}
 				try {
-					Thread.sleep(1);	
+					Thread.sleep(0);	
 				}
-				catch (InterruptedException ex){}
+				catch (Exception ex){
+					System.out.println();
+				}
 			}
 		}
 	};

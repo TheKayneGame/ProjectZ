@@ -43,21 +43,14 @@ public class ProjectZ extends Applet implements ActionListener
     public void init()
     {
     	
-    	
+    	InitElement();
     	
         addKeyListener(new InputKeyEvents());
         setFocusable(true);
         
         
         setSize(600, 500);
-        System.out.println("ProjectZ INIT");
-        
-        //Initializes Supplementary Classes
-        FriendlyBullets.init();
-        InputKeyEvents.init();
-        Enemy1.init();
-        Collision.init();
-        
+        System.out.println("ProjectZ INIT");        
        
     	//Starts Timer For 
         timer = new Timer(10, this);
@@ -77,7 +70,14 @@ public class ProjectZ extends Applet implements ActionListener
     	} catch (IOException ex) { } 
     }
     
-   
+   public static void InitElement()
+   {
+	   //Initializes Supplementary Classes
+       FriendlyBullets.init();
+       InputKeyEvents.init();
+       Enemy1.init();
+       Collision.init();
+   }
     
     public void actionPerformed(ActionEvent e)
     {
@@ -91,7 +91,7 @@ public class ProjectZ extends Applet implements ActionListener
     	dim = getSize();
     	gBuff.clearRect(0, 0, dim.width, dim.height);
     	gBuff.drawImage(SpaceShip, Player.getX(), Player.getY(), this); 
-    	gBuff.fillRect(Enemy1.x, Enemy1.y, 10, 10);
+    	gBuff.fillRect(Enemy1.x, Enemy1.y, 200, 200);
     	gBuff.drawRect(10, 10, 400, 450 );
     	//controller.render(g);
     	//Adds List To Buffer

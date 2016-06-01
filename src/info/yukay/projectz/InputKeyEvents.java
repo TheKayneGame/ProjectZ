@@ -18,7 +18,7 @@ public class InputKeyEvents extends KeyAdapter
 	static boolean playermoveDown;
 	static boolean playermoveRight;
 	
-	FriendlyBullets FriendlyBullets1 = new FriendlyBullets();
+	
 	
 	
 	public void init() 
@@ -49,7 +49,7 @@ public class InputKeyEvents extends KeyAdapter
 		
 		if (e.getKeyCode() == KeyEvent.VK_E)
 		{
-			FriendlyBullets1.init();
+			ProjectZ.InitElement();
 		}
 			
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)

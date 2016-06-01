@@ -63,6 +63,7 @@ public class FriendlyBullets {
 						{
 							System.out.println(i + "Removed");
 						}
+						
 					}
 					if(ProjectZ.DebugModeOn())
 					{
@@ -74,7 +75,9 @@ public class FriendlyBullets {
 				{
 					Thread.sleep(1);
 				}
-				catch (InterruptedException ex){}
+				catch (InterruptedException ex){
+					
+				}
 			}
 		}
 	};
